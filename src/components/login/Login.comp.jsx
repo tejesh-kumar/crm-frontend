@@ -16,7 +16,7 @@ function LoginForm({
           <h1 className="text-info text-center">Client Login</h1>
           <hr />
           <Form autoComplete="off" onSubmit={handleOnSubmit}>
-            <Form.Group>
+            <Form.Group className="mb-2">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
@@ -27,7 +27,7 @@ function LoginForm({
                 required
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"

@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import PageBreadcrumb from '../../components/breadcrumb/Breadcrumb.comp';
 import tickets from '../../assets/data/dummy-tickets.json';
 import MessageHistory from '../../components/message-history/MessageHistory.comp';
 import UpdateTicket from '../../components/update-ticket/UpdateTicket.comp';
 
-const ticket = tickets[0];
 export default function Ticket() {
   const [message, setMessage] = useState('');
-  useEffect(() => {}, [message]);
+  const [ticket, setTicket] = useState('');
+
+  const { tId } = useParams();
+
+  useEffect(() => {
+    for (let i = 0; i < tickets.length; i += 1) {
+      if (tickets[i].id === tId) {
+        setTicket(tickets[i]);
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+    }
+  }, [message, tId]);
 
   const handleOnChange = e => {
     setMessage(e.target.value);
@@ -17,6 +29,7 @@ export default function Ticket() {
   const handleOnSubmit = () => {
     alert('Form submited!');
   };
+
   return (
     <Container>
       <Row>
@@ -35,9 +48,7 @@ export default function Ticket() {
         </Col>
       </Row>
       <Row className="mt-4">
-        <Col>
-          <MessageHistory msg={ticket.history} />
-        </Col>
+        <Col>{ticket.history && <MessageHistory msg={ticket.history} />}</Col>
       </Row>
       <hr />
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import PageBreadcrumb from '../../components/breadcrumb/Breadcrumb.comp';
 import SearchForm from '../../components/search-form/SearchForm.comp';
 import TicketTable from '../../components/ticket-table/TicketTable.comp';
@@ -34,7 +35,9 @@ export default function TicketLists() {
       </Row>
       <Row className="mt-4">
         <Col>
-          <Button variant="info">Add New Ticket</Button>
+          <Link to="/add-ticket">
+            <Button variant="info">Add New Ticket</Button>
+          </Link>
         </Col>
         <Col className="text-right">
           <SearchForm handleOnChange={handleOnChange} str={str} />
